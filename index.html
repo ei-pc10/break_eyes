@@ -22,9 +22,10 @@
 
         console.log("w = " + canvas.width + " h " + canvas.height);
 
-       
+        let t = 0;
+        let yamada = 0;
         // canvasにクリックイベント用のコールバック関数を用意する。
-        canvas.addEventListener('mousemove', function(){
+        canvas.addEventListener('mouseup', function(){
             // 描画色をランダムに変える。
             let r = Math.floor(Math.random()*256);
 
@@ -32,7 +33,36 @@
             let b = Math.floor(Math.random()*256);
             let color = r + ", " + g + ", " + b;
             //ctx.fillStyle = "rgb("+ color + ")";
-            let yamada = Math.floor(Math.random()*3);
+            
+            t++;
+            t %= 2;
+
+            console.log(t);
+
+
+            //let x = 1;
+           // let y = Math.floor(Math.random()*(canvas.height + 1));
+           //  let y = 1;
+           // let w = 8000;//Math.floor(Math.random()*8001 + 20); 
+           // let h = w;
+           // ctx.fillRect(x, y, w, h); 
+
+        });
+
+
+        function bb(){
+            if(t == 1){
+                aa();
+            }
+            else{
+                ctx.fillStyle = "rgb(255,255,255)";
+                ctx.fillRect(1, 1, 8000, 8000); 
+
+            }
+        }
+
+        function aa(){
+            yamada = Math.floor(Math.random()*3);
             if(yamada == 1){
                 ctx.fillStyle = "rgb(255,0,0)";
             }
@@ -42,16 +72,15 @@
             else{
                 ctx.fillStyle = "rgb(0,0,255)";
             }
+            ctx.fillRect(1, 1, 8000, 8000); 
 
-            //let x = Math.floor(Math.random()*(canvas.width + 1));
-             let x = 1;
-           // let y = Math.floor(Math.random()*(canvas.height + 1));
-             let y = 1;
-            let w = 8000;//Math.floor(Math.random()*8001 + 20); 
-            let h = w;
-            //ctx.clearRect(0, 0, 400, 400);
-            ctx.fillRect(x, y, w, h); 
-        });
+        }
+
+        setInterval(() => {
+                bb();
+                }, 1);
+
+
     </script>
 </body>
 </html>
