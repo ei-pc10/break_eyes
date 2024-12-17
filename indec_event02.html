@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>イベント処理で描画します。マウスの位置</h1>
+    <canvas id ="mycanvas" width="4000" height="4000"></canvas>
+   <h3>canvas内でクリックしてください。</h3>
+
+    <script>
+        let canvas;
+        let ctx;
+        canvas = document.getElementById('mycanvas');
+        ctx = canvas.getContext("2d");
+        if(canvas == null || ctx == null){
+            console.log("canvas, contextga不満です。");
+            alert("canvas, contextga不満です");
+        }
+
+        console.log("w = " + canvas.width + " h " + canvas.height);
+
+       
+        // canvasにクリックイベント用のコールバック関数を用意する。
+        canvas.addEventListener('mousemove', function(){
+            // 描画色をランダムに変える。
+            let r = Math.floor(Math.random()*256);
+
+            let g = Math.floor(Math.random()*256);
+            let b = Math.floor(Math.random()*256);
+            let color = r + ", " + g + ", " + b;
+            //ctx.fillStyle = "rgb("+ color + ")";
+            let yamada = Math.floor(Math.random()*3);
+            if(yamada == 1){
+                ctx.fillStyle = "rgb(255,0,0)";
+            }
+            else if(yamada == 2){
+                ctx.fillStyle = "rgb(0,255,0)";
+            }
+            else{
+                ctx.fillStyle = "rgb(0,0,255)";
+            }
+
+            //let x = Math.floor(Math.random()*(canvas.width + 1));
+             let x = 1;
+           // let y = Math.floor(Math.random()*(canvas.height + 1));
+             let y = 1;
+            let w = 8000;//Math.floor(Math.random()*8001 + 20); 
+            let h = w;
+            //ctx.clearRect(0, 0, 400, 400);
+            ctx.fillRect(x, y, w, h); 
+        });
+    </script>
+</body>
+</html>
